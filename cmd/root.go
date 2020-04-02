@@ -3,6 +3,8 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"os"
+	"strconv"
 
 	"github.com/jonyhy96/lgtm-action/pkg/runner"
 	"github.com/jonyhy96/lgtm-action/pkg/util/github"
@@ -22,11 +24,10 @@ func Execute(ctx *context.Context, version string) {
 			RunE:    newRunCommand(ctx, input),
 		}
 	)
-	rootCmd.Flags().StringVarP(&input.GithubAuthToken, "token", "g", "", "the GITHUB_AUTH_TOKEN to make changes on your repo")
-	rootCmd.Flags().IntVarP(&input.Times, "times", "t", 1, "the port of the server (default 8080)")
-	rootCmd.Flags().StringVarP(&input.OwnersFile, "owners", "o", "OWNERS", "the owners file that contains the repo's owner")
+	input.LoadFromEnv()
 	if err := rootCmd.Execute(); err != nil {
 		logrus.Error(fmt.Errorf("rootCmd Execute error: %s", err.Error()))
+		os.Exit(1)
 	}
 }
 
@@ -36,6 +37,10 @@ func newRunCommand(ctx *context.Context, input *Input) func(*cobra.Command, []st
 			client = github.NewClient(ctx, input.GithubAuthToken)
 			runner = runner.New(ctx, client)
 		)
-		return runner.Run(input.Times, input.OwnersFile)
+		times, err := strconv.Atoi(input.Times)
+		if err != nil {
+			return err
+		}
+		return runner.Run(times, input.OwnersFile)
 	}
 }
