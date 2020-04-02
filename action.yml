@@ -1,4 +1,4 @@
-name: 'LGTM'
+name: 'LGTM Approve'
 description: 'Approve the pr for you when the owner thinks lgtm'
 author: 'jonyhy96'
 inputs:
