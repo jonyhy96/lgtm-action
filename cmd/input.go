@@ -9,9 +9,9 @@ var envPrefix = "INPUT_"
 
 // Input of the action.
 type Input struct {
-	Times           string `env:"TIMES"`
-	GithubAuthToken string `env:"GITHUB_AUTH_TOKEN"`
-	Owners          string `env:"OWNERS"`
+	Times       string `env:"TIMES"`
+	GithubToken string `env:"GITHUB_TOKEN"`
+	Owners      string `env:"OWNERS"`
 }
 
 // LoadFromEnv load env to input.

@@ -37,7 +37,7 @@ func Execute(ctx *context.Context, version string) {
 func newRunCommand(ctx *context.Context, input *Input) func(*cobra.Command, []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		var (
-			client = github.NewClient(ctx, input.GithubAuthToken)
+			client = github.NewClient(ctx, input.GithubToken)
 			runner = runner.New(ctx, client)
 		)
 		times, err := strconv.Atoi(input.Times)
