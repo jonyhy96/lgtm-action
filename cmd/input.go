@@ -10,7 +10,7 @@ var envPrefix = "INPUT_"
 // Input of the action.
 type Input struct {
 	Times       string `env:"TIMES"`
-	GithubToken string `env:"GITHUB_TOKEN"`
+	GithubToken string `env:"TOKEN"`
 	Owners      string `env:"OWNERS"`
 }
 
