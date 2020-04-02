@@ -1,4 +1,7 @@
-FROM golang:1.13 as builder
+ARG GO_VERSION=1.13.7
+ARG DND_VERSION=19.03
+
+FROM golang:${GO_VERSION} as builder
 
 ENV GO111MODULE=on
 
@@ -13,8 +16,8 @@ COPY . .
 
 RUN make build
 
-# final stage
-FROM scratch
+FROM docker:${DND_VERSION}
 WORKDIR /lgtm-action
 COPY --from=builder /app /lgtm-action/
+
 ENTRYPOINT ["./lgtm-action"]
