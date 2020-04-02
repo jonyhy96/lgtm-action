@@ -15,7 +15,10 @@ import (
 
 // Execute command
 func Execute(ctx *context.Context, version string) {
-	input := new(Input)
+	input := &Input{
+		Times:  "1",      // default times.
+		Owners: "OWNERS", // defalt owners.
+	}
 	var (
 		rootCmd = &cobra.Command{
 			Use:     "lgtm action command",
@@ -41,6 +44,6 @@ func newRunCommand(ctx *context.Context, input *Input) func(*cobra.Command, []st
 		if err != nil {
 			return err
 		}
-		return runner.Run(times, input.OwnersFile)
+		return runner.Run(times, input.Owners)
 	}
 }
