@@ -2,6 +2,7 @@ package runner
 
 import (
 	"context"
+	"strings"
 
 	"github.com/jonyhy96/lgtm-action/pkg/util/env"
 	githubutil "github.com/jonyhy96/lgtm-action/pkg/util/github"
@@ -67,6 +68,9 @@ func (r *Runner) Run(times int, ownersFile string) error {
 
 	var approverMap = make(map[string]interface{})
 	for _, comment := range comments {
+		if !strings.Contains(strings.ToLower(comment.GetBody()), "lgtm") {
+			continue
+		}
 		login := comment.User.GetLogin()
 		if _, ok := ownersMap[login]; ok {
 			approverMap[login] = struct{}{}
