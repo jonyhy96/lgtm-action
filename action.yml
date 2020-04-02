@@ -1,0 +1,21 @@
+name: 'LGTM'
+description: 'Approve the pr for you when the owner thinks lgtm'
+author: 'jonyhy96'
+inputs:
+  token:
+    description: 'github auth token use for make access to this pr'
+    required: true
+  times:
+    description: 'the number of owners that you want to get approved from'
+    required: false
+    default: 1
+  owners:
+    description: 'the owners file containing all owner'
+    required: false
+    default: 'OWNERS'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'thumbs-up'
+  color: 'green'
