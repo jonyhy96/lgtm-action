@@ -1,6 +1,6 @@
 #! /usr/bin/make -f
 
-VERSION?=$(shell git describe --tags --dirty | cut -c 2-)
+VERSION?=v1.0.0
 BASE_IMAGE?=lgtm-action
 BINARY_NAME?=lgtm-action
 
