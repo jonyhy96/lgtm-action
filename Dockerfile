@@ -17,7 +17,7 @@ COPY . .
 RUN make build
 
 FROM docker:${DND_VERSION}
-WORKDIR /lgtm-action
-COPY --from=builder /app /lgtm-action/
 
-ENTRYPOINT ["./lgtm-action"]
+COPY --from=builder /app/lgtm-action /lgtm-action
+
+ENTRYPOINT ["/lgtm-action"]
