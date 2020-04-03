@@ -46,7 +46,7 @@ jobs:
         run: |
           git add --all
           git status --short -uno
-          git commit -m 'Release ${{ steps.prepare.outputs.tag_name }}'
+          git commit --allow-empty -m 'Release ${{ steps.prepare.outputs.tag_name }}'
           git show --stat-count=10 HEAD
           git push -f origin releases/${{ steps.prepare.outputs.major_tag }}
       -
