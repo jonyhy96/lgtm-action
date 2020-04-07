@@ -3,7 +3,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 	"strconv"
 
 	"github.com/jonyhy96/lgtm-action/pkg/runner"
@@ -30,7 +29,6 @@ func Execute(ctx *context.Context, version string) {
 	input.LoadFromEnv()
 	if err := rootCmd.Execute(); err != nil {
 		logrus.Error(fmt.Errorf("rootCmd Execute error: %s", err.Error()))
-		os.Exit(1)
 	}
 }
 

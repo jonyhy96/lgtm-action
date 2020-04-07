@@ -81,6 +81,14 @@ func (r *Runner) Run(times int, ownersFile string) error {
 		return ErrorNotEnoughTimes
 	}
 
+	merged, _, err := r.client.PullRequests.IsMerged(*r.ctx, env.Owner, env.Repository, number)
+	if err != nil {
+		return err
+	}
+	if merged {
+		return nil
+	}
+
 	_, _, err = r.client.PullRequests.CreateReview(*r.ctx, env.Owner, env.Repository, number, &github.PullRequestReviewRequest{
 		Event: &approve,
 	})
