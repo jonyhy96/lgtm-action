@@ -2,7 +2,7 @@ name: 'LGTM Approve'
 description: 'Approve the pr for you when the owner thinks lgtm'
 author: 'jonyhy96'
 inputs:
-  token:
+  token: 
     description: 'github auth token use for make access to this pr'
     required: true
   times:
